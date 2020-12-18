@@ -23,7 +23,7 @@ export const handleGoogleSignIn = () =>{
       }
 
       return signedInUser;
-      const token = result.credential.accessToken;
+       const token = result.credential.accessToken;
     })
 
     .catch(err =>{ 
@@ -80,6 +80,7 @@ export  const handleFbSignIn  = () => {
       newUserInfo.error = '';
       newUserInfo.success = true;
       updateUserName(name);
+      verifyEmail();
       return newUserInfo;
     })
 
@@ -98,7 +99,6 @@ export  const handleFbSignIn  = () => {
       newUserInfo.error = '';
       newUserInfo.success = true;
       return newUserInfo;
-      console.log('sign-in user info', res.user)
     })
 
     .catch((error) => {
@@ -122,3 +122,10 @@ export  const handleFbSignIn  = () => {
         console.log(error);
      });
    }
+
+   const verifyEmail = () =>{
+    var user = firebase.auth().currentUser;
+    user.sendEmailVerification().then(function() {
+    }).catch(function(error) {
+  });
+}

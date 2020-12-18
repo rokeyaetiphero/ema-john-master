@@ -11,7 +11,6 @@ const Shipment = () => {
   console.log(watch("example")); 
 
   return (
-   
     <form className="ship-form" onSubmit={handleSubmit(onSubmit)}>
       <input name="name" defaultValue={loggedInUser.name} ref={register({ required: true })} placeholder="Your Name"/>
       {errors.name && <span className="error">Name is required</span>}

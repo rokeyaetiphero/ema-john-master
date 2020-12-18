@@ -1,36 +1,27 @@
 import React, { useState } from 'react';
 import fakeData from '../../fakeData';
-import './Shop.css'
-import Product from '../Product/Product'
+import './Shop.css';
+import Product from '../Product/Product';
 import Cart from '../Cart/Cart';
 import { addToDatabaseCart, getDatabaseCart } from '../Utilities/databaseManager';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-
+ 
 const Shop = () => {
     const first10 =fakeData.slice(0,10);
     const [products, setProducts] = useState(first10);
     const [cart, setCart] = useState([])
 
-//ata use kroa hoise akadik same product ar count dhekanor jonno
    useEffect(()=>{
        const saveCart = getDatabaseCart(); //database thkeke data load kore object akare saveCart a rakse click kra jinish
-       const productKeys = Object.keys(saveCart) // object.keys method saveCart namok obejct ar upor applay kora hoise.ay method ta saveCart theke saveCart ar key ghuloke array banie productKeys a assign korbe ..
-       console.log(saveCart);// akhane obejct hisabe database ar key,count ar jonno 2ta product key ar count dhekeayse..
+       const productKeys = Object.keys(saveCart); // object.keys method saveCart namok obejct ar upor applay kora hoise.ay method ta saveCart theke saveCart ar key ghuloke array banie productKeys a assign korbe ..
        const previousCart = productKeys.map(existingKey => {
         const  product = fakeData.find(pd => pd.key === existingKey);//productKyes mani product ar kay ghulo array hisebe store kora ase.map use kore ekta ekta key fake datar kayes ar sathe match korabo..je product ta ar key er sathe match hobe oi producta product const a assign hobe..find single value assign korbe..
         product.quantity = saveCart[existingKey] //saveCart ar modde click krito existingkey ta rekhe dibo.existingkey mani alrady added key...
-          console.log(product);
            return product;
-           
-           
        })
        setCart(previousCart); 
    },[])
-
-  
-
 
     const handleAddProduct =(product) =>{
         // console.log('Product added', product);

@@ -6,8 +6,7 @@ import Login from './components/Login/Login';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
-
+  Route 
 } from "react-router-dom";
 import Review from './components/Review/Review';
 import Inventory from './components/Inventory/Inventory';
